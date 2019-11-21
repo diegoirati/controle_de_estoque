@@ -22,10 +22,16 @@ Route::get('/home', function () {
 })->name('home');
 
 Auth::routes();
+
 Route::get('/logout', 'Auth\loginController@logout');
 
 Route::get('/cadastrarcategoria', 'CategoriaController@index')->middleware('auth')->name('categoria.index');
 Route::post('/cadastrarcategoria', 'CategoriaController@cadastrar')->middleware('auth')->name('categoria.salvar');
+
+Route::get('/cadastrarnotafiscal', 'NotaFiscalController@index')->middleware('auth')->name('nota.index');
+Route::get('/visualizarnotas', 'NotaFiscalController@indexN')->middleware('auth')->name('nota.busca');
+Route::post('/buscarnota', 'NotaFiscalController@buscar')->middleware('auth')->name('nota.buscar');
+Route::post('/cadastrarnotafiscal', 'NotaFiscalController@cadastrar')->middleware('auth')->name('nota.salvar');
 
 Route::get('/cadastrarproduto', 'ProdutoController@index')->middleware('auth')->name('produto.index');
 Route::get('/deletarproduto', 'ProdutoController@indexExcluir')->middleware('auth')->name('produto.indexExcluir');

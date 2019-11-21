@@ -14,4 +14,9 @@ class Produto extends Model
     {
         return $this->belongsTo(Categoria::class, 'categoria_id', 'id');
     }
+
+    function codigo()
+    {
+        return $this->belongsTo(NotasFiscai::class, 'nota_fiscal_id', 'id');
+    }
 }

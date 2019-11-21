@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">CADASTRO DE PRODUTO</div>
+                    <div class="card-header">CADASTRO DE NOTA FISCAL</div>
                     @if(isset($Ok))
                         <div class="alert alert-success" role="alert" align="center">
                             {{ $Ok }}
@@ -23,31 +23,35 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        <form action="{{route('produto.salvar')}}" method="post">
+                        <form action="{{route('nota.salvar')}}" method="post">
                             @csrf
-                            <label>Categoria do Produto</label>
-                            <select class="form-control" name="categoria" id="categoria">
-                                @foreach($categorias as $categoria)
-                                    <option id="{{$categoria->id}}">{{$categoria->nome}}</option>
-                                @endforeach
-                            </select>
-                            <label>Código da Nota Fiscal do Produto</label>
-                            <select class="form-control" name="codigo" id="codigo">
-                                @foreach($notas as $nota)
-                                    <option id="{{$nota->id}}">{{$nota->codigo}}</option>
-                                @endforeach
-                            </select>
-                            <label>Nome do Produto</label>
-                            <input class="form-control" id="nome" name="nome" placeholder="Digite o nome da categoria"
-                                   type="text">
-                            <label>Quantidade</label>
-                            <input class="form-control" id="quantidade" name="quantidade"
-                                   placeholder="Digite o nome da categoria"
+                            <label>Código da Nota Fiscal</label>
+                            <input class="form-control" id="codigo" name="codigo" placeholder="Digite o código da nota fiscal"
                                    type="text">
                             <br>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
                     </div>
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-header">NOTAS JÁ CADASTRADAS</div>
+                    <table class="table table-striped table-bordered table-hover" id="table_disciplines">
+                        <tr>
+                            <thead>
+                            <th scope="col" width="3%">ID</th>
+                            <th scope="col" width="97%" >CÓDIGO</th>
+                            </thead>
+                        </tr>
+                        <tbody>
+                        @foreach($notas as $nota)
+                            <tr>
+                                <td>{{ $nota->id }}</td>
+                                <td>{{ $nota->codigo }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

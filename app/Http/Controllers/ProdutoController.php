@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\NotasFiscai;
 use App\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class ProdutoController extends Controller
 {
     function index()
     {
-        return view('cadastroProduto', ["categorias" => Categoria::where('user_id', '=', Auth::user()->id)->get()]);
+        return view('cadastroProduto', ["categorias" => Categoria::where('user_id', '=', Auth::user()->id)->get(), "notas" => NotasFiscai::where('user_id', '=', Auth::user()->id)->get()]);
     }
 
     function indexExcluir()
@@ -31,19 +32,22 @@ class ProdutoController extends Controller
     {
         $data = $request->all();
         $categoria = $data["categoria"];
-        $query = Categoria::where('nome', '=', "$categoria")->get();
+        $codigo = $data["codigo"];
+        $query1 = Categoria::where('nome', '=', "$categoria")->get();
+        $query2 = NotasFiscai::where('codigo', '=', "$codigo")->get();
 
-        $categoria_id = $query[0]->id;
+        $categoria_id = $query1[0]->id;
+        $nota_id = $query2[0]->id;
         $nome = $data["nome"];
         $qtd = $data["quantidade"];
 
         try {
-            DB::table('produtos')->insert(["categoria_id" => $categoria_id, "nome" => $nome, "quantidade" => $qtd, "user_id" => Auth::user()->id]);
+            DB::table('produtos')->insert(["categoria_id" => $categoria_id, "nota_fiscal_id" => $nota_id, "nome" => $nome, "quantidade" => $qtd, "user_id" => Auth::user()->id]);
         } catch (\Exception $e) {
-            return view("cadastroProduto", ['NotOk' => "ERRO DESCONHECIDO", "categorias" => Categoria::where('user_id', '=', Auth::user()->id)->get()]);
+            return view("cadastroProduto", ['NotOk' => "ERRO DESCONHECIDO", "categorias" => Categoria::where('user_id', '=', Auth::user()->id)->get(), "notas" => NotasFiscai::where('user_id', '=', Auth::user()->id)->get()]);
         }
 
-        return view("cadastroProduto", ['Ok' => "PRODUTO CADASTRADO COM SUCESSO", "categorias" => Categoria::where('user_id', '=', Auth::user()->id)->get()]);
+        return view("cadastroProduto", ['Ok' => "PRODUTO CADASTRADO COM SUCESSO", "categorias" => Categoria::where('user_id', '=', Auth::user()->id)->get(), "notas" => NotasFiscai::where('user_id', '=', Auth::user()->id)->get()]);
     }
 
     public function excluir(Request $request)

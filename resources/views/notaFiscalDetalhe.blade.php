@@ -5,8 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">ESTOQUE</div>
                     <div class="card">
+                        <div class="card-header">BUSCAR DE DETALHE DE NOTA FISCAL</div>
                         @if(isset($Ok))
                             <div class="alert alert-success" role="alert" align="center">
                                 {{ $Ok }}
@@ -23,6 +23,24 @@
                                         aria-hidden="true">&times;</span></button>
                             </div>
                         @endif
+                        <div class="card-body">
+                            <form action="{{route('nota.buscar')}}" method="post">
+                                @csrf
+                                <label>Código da Nota Fiscal</label>
+                                <input class="form-control" id="codigo" name="codigo"
+                                       placeholder="Digite o código da nota fiscal"
+                                       type="text">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                @if(isset($produtos))
+                    <div class="card">
+                        <div class="card-header">PRODUTOS CADASTRADOS NESSA NOTA FISCAL</div>
                         <table class="table table-striped table-bordered table-hover" id="table_disciplines">
                             <tr>
                                 <thead>
@@ -48,9 +66,11 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+
+                @endif
             </div>
         </div>
+    </div>
     </div>
 @endsection
 <script>

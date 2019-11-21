@@ -87,13 +87,15 @@
             </div>
         @else
             <div class="links">
+                <a href="{{route('nota.index')}}">Cadastrar Nota Fiscal</a>
                 <a href="{{route('categoria.index')}}">Cadastrar Categoria</a>
                 <a href="{{route('produto.index')}}">Cadastrar Produtos</a>
                 <a href="{{route('produto.indexAtualizar')}}">Atualizar Produtos</a>
+                <br>
+                <br>
                 <a href="{{route('produto.indexExcluir')}}">Excluir Produtos</a>
-                <br>
-                <br>
                 <a href="{{route('estoque.index')}}">Vizualizar Estoque de Produtos</a>
+                <a href="{{route('nota.busca')}}">Buscar Nota Fical Detalhada</a>
             </div>
         @endguest
 

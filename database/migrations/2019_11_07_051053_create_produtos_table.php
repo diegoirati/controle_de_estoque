@@ -18,8 +18,10 @@ class CreateProdutosTable extends Migration
             $table->bigInteger('categoria_id')->unsigned();
             $table->string('nome');
             $table->integer('quantidade');
+            $table->bigInteger('nota_fiscal_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('nota_fiscal_id')->references('id')->on('notas_fiscais');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
