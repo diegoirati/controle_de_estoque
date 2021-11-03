@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
+    <div class="row justify-content-center">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">ESTOQUE</div>
                     <div class="card">
@@ -28,7 +28,7 @@
                                 <thead>
                                 <th scope="col" width="20%">ID</th>
                                 <th scope="col" width="20%">CATEGORIA</th>
-                                <th scope="col" width="20%">CÓDIGO NOTA FISCAL</th>
+                                <th scope="col" width="20%">PREÇO</th>
                                 <th scope="col" width="20%">NOME</th>
                                 <th scope="col" width="20%">QUANTIDADE</th>
                                 <th scope="col" width="20%">ATUALIZADO EM</th>
@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{ $produto->id }}</td>
                                     <td>{{ ($produto->categoria)->nome }}</td>
-                                    <td>{{ ($produto->codigo)->codigo }}</td>
+                                    <td>{{ $produto->preco }}</td>
                                     <td>{{ $produto->nome }}</td>
                                     <td>{{ $produto->quantidade }}</td>
                                     <td>{{ $produto->updated_at }}</td>

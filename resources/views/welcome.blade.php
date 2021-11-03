@@ -1,105 +1,30 @@
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-<div class="flex-center position-ref full-height">
-
-
-    <div class="content">
-        <div class="title m-b-md">
-            CONTROLE DE ESTOQUE
-        </div>
-
-        @guest
-            <div class="links">
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register') }}">Cadastrar</a>
-            </div>
-        @else
-            <div class="links">
-                <a href="{{route('nota.index')}}">Cadastrar Nota Fiscal</a>
-                <a href="{{route('categoria.index')}}">Cadastrar Categoria</a>
-                <a href="{{route('produto.index')}}">Cadastrar Produtos</a>
-                <a href="{{route('produto.indexAtualizar')}}">Atualizar Produtos</a>
-                <br>
-                <br>
-                <a href="{{route('produto.indexExcluir')}}">Excluir Produtos</a>
-                <a href="{{route('estoque.index')}}">Vizualizar Estoque de Produtos</a>
-                <a href="{{route('nota.busca')}}">Buscar Nota Fical Detalhada</a>
-            </div>
-        @endguest
-
+@section('content')
+    <div class="title d-flex justify-content-center mt-lg-5 mb-5">
+        Feira Agroecológica
     </div>
-</div>
-</body>
-</html>
+
+    @guest
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-success mr-5" style="width: 150px !important" href="/guarapuava">Guarapuava</a>
+            <a class="btn btn-success ml-5" style="width: 150px !important" href="/irati">Irati</a>
+        </div>
+    @else
+        <div class="links d-flex justify-content-center">
+            <a href="{{route('categoria.index')}}">Cadastrar Categoria</a>
+            <a href="{{route('produto.index')}}">Cadastrar Produtos</a>
+            <br>
+            <br>
+            <a href="{{route('produto.indexExcluir')}}">Excluir Produtos</a>
+            <a href="{{route('estoque.index')}}">Visualizar Estoque de Produtos</a>
+            <br>
+            <br>
+            <a href="{{route('pedidos.index')}}">Relatório de pedidos</a>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-success mr-5" style="width: 150px !important" href="/guarapuava">Guarapuava</a>
+            <a class="btn btn-success ml-5" style="width: 150px !important" href="/irati">Irati</a>
+        </div>
+    @endguest
+@endsection

@@ -17,11 +17,12 @@ class CreateProdutosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('categoria_id')->unsigned();
             $table->string('nome');
+            $table->text('descricao');
             $table->integer('quantidade');
-            $table->bigInteger('nota_fiscal_id')->unsigned();
+            $table->string('preco');
+            $table->string('image_name')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');
-            $table->foreign('nota_fiscal_id')->references('id')->on('notas_fiscais');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
